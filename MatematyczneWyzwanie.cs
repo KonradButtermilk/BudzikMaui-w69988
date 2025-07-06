@@ -1,14 +1,16 @@
-﻿using MauiCatAlarm.Services;
-
 namespace MauiCatAlarm;
 
-public class MathChallenge(string prompt, Func<double, bool> validator) : Challenge
+/// <summary>
+/// Proste wyzwanie matematyczne używane do wyłączania budzika.
+/// </summary>
+public class MatematyczneWyzwanie(string prompt, Func<double, bool> validator) : Wyzwanie
 {
+    // Funkcja weryfikująca poprawność odpowiedzi
     private readonly Func<double, bool> _validator = validator;
 
     public override string Prompt { get; } = prompt;
 
-    public static MathChallenge CreateAdditionChallenge(Difficulty difficulty = Difficulty.Easy)
+    public static MatematyczneWyzwanie CreateAdditionChallenge(Difficulty difficulty = Difficulty.Easy)
     {
         var (min, max) = difficulty switch
         {
@@ -21,12 +23,12 @@ public class MathChallenge(string prompt, Func<double, bool> validator) : Challe
 
         var a = Random.Shared.Next(min, max);
         var b = Random.Shared.Next(min, max);
-        return new MathChallenge(
+        return new MatematyczneWyzwanie(
             $"{a} + {b} = ?",
             answer => answer == a + b);
     }
 
-    public static MathChallenge CreateMultiplicationChallenge(Difficulty difficulty = Difficulty.Easy)
+    public static MatematyczneWyzwanie CreateMultiplicationChallenge(Difficulty difficulty = Difficulty.Easy)
     {
         var (min, max) = difficulty switch
         {
@@ -39,12 +41,12 @@ public class MathChallenge(string prompt, Func<double, bool> validator) : Challe
 
         var a = Random.Shared.Next(min, max);
         var b = Random.Shared.Next(min, max);
-        return new MathChallenge(
+        return new MatematyczneWyzwanie(
             $"{a} × {b} = ?",
             answer => answer == a * b);
     }
 
-    public static MathChallenge CreateDivisionChallenge(Difficulty difficulty = Difficulty.Easy)
+    public static MatematyczneWyzwanie CreateDivisionChallenge(Difficulty difficulty = Difficulty.Easy)
     {
         var (min, max) = difficulty switch
         {
@@ -57,7 +59,7 @@ public class MathChallenge(string prompt, Func<double, bool> validator) : Challe
 
         var a = Random.Shared.Next(min, max);
         var b = Random.Shared.Next(min, max);
-        return new MathChallenge(
+        return new MatematyczneWyzwanie(
             $"{a * b} ÷ {b} = ?",
             answer => answer == a);
     }

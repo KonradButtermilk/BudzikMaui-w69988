@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MauiCatAlarm.ViewModels"
+             x:Class="MauiCatAlarm.StronaGlowna"
+             x:DataType="vm:GlownyModelWidoku">
+    <ScrollView>
+        <VerticalStackLayout>
+            <VerticalStackLayout Spacing="0">
+                <HorizontalStackLayout HorizontalOptions="Start"
+                                       Spacing="6"
+                                       Padding="0">
+                    <Label Text="{Binding AktualnyDzien}"
+                           Style="{StaticResource Subheading}"
+                           Margin="0,0,48,0" />
+                    <Label Text="{Binding AktualnyMiesiac}"
+                           Style="{StaticResource SubheadingMonth}" />
+                    <Label Text="{Binding NumerDnia}"
+                           Style="{StaticResource SubheadingDayNumber}" />
+                </HorizontalStackLayout>
+
+                <Label Text="{Binding AktualnyCzas}"
+                       Style="{StaticResource Heading}" />
+            </VerticalStackLayout>
+
+
+            <!-- Show an ongoing alarm in case the notification was dismissed -->
+            <Label Text="Obudź się!"
+                   IsVisible="{Binding AlarmTrwa}" />
+            <Button Text="Przejdź do alarmu"
+                    IsVisible="{Binding AlarmTrwa}"
+                    Command="{Binding OtworzStroneAlarmuCommand}"
+                    Style="{StaticResource DangerButton}"
+                    Margin="0,0,0,48" />
+
+            <!-- Show time picker when alarm is disabled -->
+            <Label Text="Godzina budzika:" />
+            <TimePicker Time="{Binding GodzinaAlarmu}"
+                        Format="t" />
+
+            <!-- Show a label with the next occurrence if the alarm is enabled -->
+
+            <Button Text="{Binding TekstPrzelacznika}"
+                    Command="{Binding PrzelaczAlarmCommand}"
+                    Style="{StaticResource PrimaryButton}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

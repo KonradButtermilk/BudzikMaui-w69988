@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace MauiCatAlarm;
 
-public static class DateTimeExtensions
+/// <summary>
+/// Zestaw rozszerzeń pomocniczych dla typu <see cref="DateTime"/>.
+/// </summary>
+public static class RozszerzeniaDateTime
 {
     /// <summary>
     /// Returns a new <see cref="DateTime"/> that represents the next whole minute.
