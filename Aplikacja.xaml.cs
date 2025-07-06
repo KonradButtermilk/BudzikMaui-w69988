@@ -4,22 +4,27 @@ using Microsoft.Extensions.Logging;
 
 namespace MauiCatAlarm;
 
-public partial class App : Application
+/// <summary>
+/// Główna klasa aplikacji budzika.
+/// </summary>
+public partial class Aplikacja : Application
 {
     private readonly IServiceScope _serviceScope;
     private bool _isAlarmActive;
 
-    public App(AlarmService alarmService, IServiceProvider serviceProvider, ILogger<App> logger)
+    public Aplikacja(SerwisAlarmu alarmService, IServiceProvider serviceProvider, ILogger<Aplikacja> logger)
     {
         _serviceScope = serviceProvider.CreateScope();
 
         InitializeComponent();
 
-        MainPage = ServiceProvider.GetRequiredService<MainPage>();
+        // Ładujemy powłokę aplikacji z kontenera usług
+        MainPage = ServiceProvider.GetRequiredService<PowlokaAplikacji>();
         alarmService.EnsureAlarmIsSetIfEnabled();
     }
 
-    public static new App Current => (App)Application.Current!;
+    // Ułatwia dostęp do bieżącej instancji aplikacji
+    public static new Aplikacja Current => (Aplikacja)Application.Current!;
 
     public IServiceProvider ServiceProvider => _serviceScope.ServiceProvider;
 

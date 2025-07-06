@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MauiCatAlarm.ViewModels"
+             x:DataType="vm:AlarmModelWidoku"
+             x:Class="MauiCatAlarm.StronaAlarmu"
+             Title="Alarm"
+             Style="{StaticResource DangerPage}">
+    <VerticalStackLayout>
+        <Label Text="BUDZIK!"
+               Style="{StaticResource Heading}"/>
+
+        <Label Text="{Binding Challenge.Prompt}"
+               Style="{StaticResource Heading}"/>
+
+        <Entry Placeholder="Twoja odpowiedź"
+               Keyboard="Numeric"
+               IsSpellCheckEnabled="False"
+               Text="{Binding ChallengeEntryText}"
+               ReturnType="Done"
+               ReturnCommand="{Binding DismissAlarmCommand}"
+               Style="{StaticResource DangerEntry}"/>
+
+        <Button Text="Wyłącz alarm"
+                Command="{Binding DismissAlarmCommand}"
+                Style="{StaticResource DangerButton}"/>
+
+        <Button Text="Nowe pytanie"
+                Command="{Binding NewChallengeCommand}"
+                Style="{StaticResource SecondaryButton}"/>
+    </VerticalStackLayout>
+</ContentPage>
